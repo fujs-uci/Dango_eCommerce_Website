@@ -4,31 +4,49 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=0.0">
     <title>{% block title %}{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'profiles/main.css' %}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 </head>
 <body>
-<div class="web-top-header">
-    WELCOME TO WEBSITE
-</div>
-<ul class="main-nav-bar">
-    {% url 'home' as home %}
-    {% url 'about' as about %}
-    {% url 'contact' as contact %}
-    <li{% if request.path == home %} class="active" {% endif %}><a href="{% url 'home' %}">Home</a></li>
-    <li{% if request.path == about %} class="active" {% endif %}><a href="{% url 'about' %}">About</a></li>
-    <li{% if request.path == contact %} class="active" {% endif %}><a href="{% url 'contact' %}">Contact</a></li>
-    {% if not request.user.is_authenticated %}
-        <li{% if request.path == account %} class="active" {% endif %}><a href="{% url 'account_login' %}">Login</a></li>
-    {% else %}
-        <li{% if request.path == account %} class="active" {% endif %}><a href="{% url 'account_logout' %}">Logout</a></li>
-    {% endif %}
 
-</ul>
-<div style="padding:0 16px;">
-{% block content %}
-{% endblock %}
-</div>
+    <div class="container">
+        {% url 'home' as home %}
+        {% url 'about' as about %}
+        {% url 'contact' as contact %}
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar" >
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">WebSiteName</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li {% if request.path == home %} class="active" {% endif %}><a href="{% url 'home' %}">Home</a></li>
+                    <li {% if request.path == about %} class="active" {% endif %}><a href="{% url 'about' %}">About</a></li>
+                    <li {% if request.path == contact %} class="active" {% endif %}><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if not request.user.is_authenticated %}
+                        <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {% else %}
+                        <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="padding:0 16px;">
+        {% block content %}
+        {% endblock %}
+    </div>
+    </div>
+    <script src="{% static "/js/jquery-3.2.1.slim.min.js" %}" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="{% static "/js/popper.min.js" %}" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{% static "/js/bootstrap.min.js" %}" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>
