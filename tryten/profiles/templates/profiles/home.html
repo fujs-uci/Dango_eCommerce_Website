@@ -1,7 +1,43 @@
 {% extends 'profiles/base.html' %}
+{% load static %}
 {% block title %}
 Home
 {% endblock %}
+
 {% block content %}
-    <h1>Hello World</h1>
+    <div class="jumbotron">
+        <h1>Welcome to website</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from certain Coffea species. The genus Coffea is native to tropical Africa (specifically having its origin in Ethiopia and Sudan) and Madagascar, the Comoros, Mauritius, and Réunion in the Indian Ocean.</p>
+            <p><a class="btn btn-default" href="#" role="button">View</a></p>
+        </div>
+        <div class="col-md-4">
+            <a href="#">
+                <img src="{% static 'profiles/images/Super-High-Detail-Water-Droplets.jpg' %}" class="img-responsive">
+            </a>
+        </div>
+        <div class="col-md-4">
+            {% if request.user.is_authenticated %}
+            <h3> Hello {{ request.user }}</h3>
+            {% else %}
+            <form class="login" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+
+                <div id="div_id_login" class="form-group"> <label for="id_login" class="control-label  requiredField">
+                                Login<span class="asteriskField">*</span> </label> <div class="controls "> <input type="text" name="login" placeholder="Username or e-mail" autofocus="autofocus" class="textinput textInput form-control" required="" id="id_login"> </div> </div> <div id="div_id_password" class="form-group"> <label for="id_password" class="control-label  requiredField">
+                                Password<span class="asteriskField">*</span> </label> <div class="controls "> <input type="password" name="password" placeholder="Password" class="textinput textInput form-control" required="" id="id_password"> </div> </div> <div class="form-group"> <div id="div_id_remember" class="checkbox"> <label for="id_remember" class=""> <input type="checkbox" name="remember" class="checkboxinput" id="id_remember">
+                                    Remember Me
+                                </label> </div> </div>
+
+
+                <a class="btn btn-link button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+                <a class="btn btn-link button secondaryAction" href="{% url 'account_signup' %}">Signup</a>
+                <button class="btn btn-default primaryAction" type="submit">Sign In</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
