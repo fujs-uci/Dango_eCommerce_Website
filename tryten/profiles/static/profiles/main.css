@@ -1,0 +1,47 @@
+h1 {
+    text-align: center;
+    font-size: 30px;
+}
+
+body {
+    margin: 0;
+}
+.web-top-header {
+    text-align: center;
+    background-color: aliceblue;
+    padding: 3%;
+    color: black;
+}
+ul.main-nav-bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+ul.main-nav-bar li {
+    float: left;
+    padding: 0 2.5% 0 2.5%;
+}
+
+ul.main-nav-bar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.main-nav-bar li:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: lightslategrey;
+}
+
+@media screen and (max-width: 600px) {
+  ul.main-nav-bar,
+  ul.main-nav-bar li {float: none;}
+}
