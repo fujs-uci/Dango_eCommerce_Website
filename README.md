@@ -5,5 +5,5 @@ Building a sample eCommerce website following [this tutorial](https://www.youtub
 Uses:
 - Django Framework
 - Django All Auth
-- Bootstrap3
+- Bootstrap4
 - Sqlite3
